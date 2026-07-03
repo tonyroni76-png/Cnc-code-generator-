@@ -4,13 +4,44 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CNC Code Generator</title>
+
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
 <div class="container">
+
     <h1>CNC Code Generator</h1>
-    <p>Generate LinuxCNC and Fanuc G-code quickly.</p>
+
+    <label>Operation</label>
+    <select id="operation">
+        <option>Circle</option>
+        <option>Rectangle Pocket</option>
+        <option>Drilling</option>
+        <option>Facing</option>
+    </select>
+
+    <label>X Position</label>
+    <input type="number" id="x" value="0">
+
+    <label>Y Position</label>
+    <input type="number" id="y" value="0">
+
+    <label>Diameter</label>
+    <input type="number" id="diameter" value="1">
+
+    <label>Depth</label>
+    <input type="number" id="depth" value="-0.25">
+
+    <button onclick="generateCode()">
+        Generate G-Code
+    </button>
+
+    <h2>Generated Code</h2>
+
+    <textarea id="output"></textarea>
+
 </div>
 
 <script src="app.js"></script>
