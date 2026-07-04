@@ -1,6 +1,10 @@
 
 function generateCode() {
 
+    function generateGCode() {
+    alert("Button clicked!");
+    }
+
     const operation = document.getElementById("operation").value;
     const x = parseFloat(document.getElementById("x").value);
     const y = parseFloat(document.getElementById("y").value);
