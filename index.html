@@ -10,41 +10,49 @@
 
 <body>
 
-<div class="container">
-
     <h1>CNC Code Generator</h1>
 
-    <label>Operation</label>
-    <select id="operation">
-        <option>Circle</option>
-        <option>Rectangle Pocket</option>
-        <option>Drilling</option>
-        <option>Facing</option>
-    </select>
+    <div class="container">
 
-    <label>X Position</label>
-    <input type="number" id="x" value="0">
+        <label for="width">Width</label>
+        <input
+            type="number"
+            id="width"
+            placeholder="Enter width">
 
-    <label>Y Position</label>
-    <input type="number" id="y" value="0">
+        <label for="height">Height</label>
+        <input
+            type="number"
+            id="height"
+            placeholder="Enter height">
 
-    <label>Diameter</label>
-    <input type="number" id="diameter" value="1">
+        <label for="depth">Depth</label>
+        <input
+            type="number"
+            id="depth"
+            step="0.001"
+            placeholder="Enter depth">
 
-    <label>Depth</label>
-    <input type="number" id="depth" value="-0.25">
+        <label for="feed">Feed Rate</label>
+        <input
+            type="number"
+            id="feed"
+            placeholder="Enter feed rate">
 
-    <button onclick="generateCode()">
-        Generate G-Code
-    </button>
+        <button onclick="generateGCode()">
+            Generate G-Code
+        </button>
 
-    <h2>Generated Code</h2>
+        <h2>Generated G-Code</h2>
 
-    <textarea id="output"></textarea>
+        <textarea
+            id="output"
+            rows="20"
+            readonly></textarea>
 
-</div>
+    </div>
 
-<script src="app.js"></script>
+    <script src="app.js"></script>
 
 </body>
 </html>
