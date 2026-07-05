@@ -3,7 +3,7 @@ function generateGCode() {
     const operation = document.getElementById("operation").value;
     const width = parseFloat(document.getElementById("width").value);
     const height = parseFloat(document.getElementById("height").value);
-    const depth = parseFloat(document.getElementById("depth").value);
+    //const depth = parseFloat(document.getElementById("depth").value);
     const feed = parseFloat(document.getElementById("feed").value);
     const toolNumber = parseInt(document.getElementById("toolNumber").value);
     const spindleSpeed = parseInt(document.getElementById("spindleSpeed").value);
