@@ -5,7 +5,12 @@ function generateGCode() {
     const height = parseFloat(document.getElementById("height").value);
     const depth = parseFloat(document.getElementById("depth").value);
     const feed = parseFloat(document.getElementById("feed").value);
-
+    const toolNumber = parseInt(document.getElementById("toolNumber").value);
+    const spindleSpeed = parseInt(document.getElementById("spindleSpeed").value);
+    const safeZ = parseFloat(document.getElementById("safeZ").value);
+    const finalDepth = parseFloat(document.getElementById("finalDepth").value);
+    const depthPerPass = parseFloat(document.getElementById("depthPerPass").value);
+    
     let gcode = "%\n";
     gcode += "G21\n";
     gcode += "G90\n";
