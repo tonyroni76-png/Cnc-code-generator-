@@ -22,38 +22,41 @@ gcode += `G0 Z${safeZ.toFixed(3)}\n`;
     
 let currentDepth = 0;
 
-while (currentDepth > finalDepth) {
+if (operation === "rectangle") {
 
-    currentDepth -= depthPerPass;
+    gcode += "(Rectangular Profile)\n";
 
-    if (currentDepth < finalDepth) {
-        currentDepth = finalDepth;
-    }
+    let currentDepth = 0;
 
-    gcode += `\n(Pass at Z${currentDepth.toFixed(3)})\n`;
+    while (currentDepth > finalDepth) {
 
-    gcode += `G0 Z${safeZ.toFixed(3)}\n`;
-    gcode += `G1 Z${currentDepth.toFixed(3)} F10\n`;
+        currentDepth -= depthPerPass;
 
-    // Existing rectangle toolpath goes here
+        if (currentDepth < finalDepth) {
+            currentDepth = finalDepth;
+        }
 
-    gcode += `G0 Z${safeZ.toFixed(3)}\n`;
-}
-    if (operation === "rectangle") {
+        gcode += `\n(Pass at Z${currentDepth.toFixed(3)})\n`;
 
-        gcode += "(Rectangular Profile)\n";
-        gcode += "G0 X0 Y0\n";
-        gcode += `G1 Z-${depth.toFixed(3)} F${feed}\n`;
-        gcode += `G1 X${width.toFixed(3)}\n`;
+        gcode += `G0 X0 Y0\n`;
+        gcode += `G0 Z${safeZ.toFixed(3)}\n`;
+        gcode += `G1 Z${currentDepth.toFixed(3)} F10\n`;
+
+        gcode += `G1 X${width.toFixed(3)} F${feed}\n`;
         gcode += `G1 Y${height.toFixed(3)}\n`;
-        gcode += "G1 X0.000\n";
-        gcode += "G1 Y0.000\n";
+        gcode += `G1 X0.000\n`;
+        gcode += `G1 Y0.000\n`;
 
-    } else {
-
-        gcode += `(The ${operation} operation has not been programmed yet.)\n`;
-
+        gcode += `G0 Z${safeZ.toFixed(3)}\n`;
     }
+
+} else {
+
+    gcode += `(The ${operation} operation has not been programmed yet.)\n`;
+
+}
+
+    
 
     gcode += "G0 Z5.000\n";
     gcode += "M30\n";
