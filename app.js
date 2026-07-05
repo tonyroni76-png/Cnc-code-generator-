@@ -19,7 +19,26 @@ gcode += "G17 G90 G40\n";
 gcode += `T${toolNumber} M6\n`;
 gcode += `S${spindleSpeed} M3\n`;
 gcode += `G0 Z${safeZ.toFixed(3)}\n`;
+    
+let currentDepth = 0;
 
+while (currentDepth > finalDepth) {
+
+    currentDepth -= depthPerPass;
+
+    if (currentDepth < finalDepth) {
+        currentDepth = finalDepth;
+    }
+
+    gcode += `\n(Pass at Z${currentDepth.toFixed(3)})\n`;
+
+    gcode += `G0 Z${safeZ.toFixed(3)}\n`;
+    gcode += `G1 Z${currentDepth.toFixed(3)} F10\n`;
+
+    // Existing rectangle toolpath goes here
+
+    gcode += `G0 Z${safeZ.toFixed(3)}\n`;
+}
     if (operation === "rectangle") {
 
         gcode += "(Rectangular Profile)\n";
