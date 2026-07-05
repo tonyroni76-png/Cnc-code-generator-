@@ -10,12 +10,15 @@ function generateGCode() {
     const safeZ = parseFloat(document.getElementById("safeZ").value);
     const finalDepth = parseFloat(document.getElementById("finalDepth").value);
     const depthPerPass = parseFloat(document.getElementById("depthPerPass").value);
-    
-    let gcode = "%\n";
-    gcode += "G21\n";
-    gcode += "G90\n";
-    gcode += "G17\n";
-    gcode += "G0 Z5.000\n";
+
+    let gcode = "";
+
+gcode += "%\n";
+gcode += "G20\n";          // Inches
+gcode += "G17 G90 G40\n";
+gcode += `T${toolNumber} M6\n`;
+gcode += `S${spindleSpeed} M3\n`;
+gcode += `G0 Z${safeZ.toFixed(3)}\n`;
 
     if (operation === "rectangle") {
 
