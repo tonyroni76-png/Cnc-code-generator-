@@ -60,6 +60,19 @@ function generateGCode() {
         plunge: 48
     }
 };
+
+    document.getElementById("toolSelect").addEventListener("change", function () {
+
+    const tool = toolLibrary[this.value];
+
+    if (!tool) return;
+
+    document.getElementById("toolNumber").value = tool.number;
+    document.getElementById("toolDiameter").value = tool.diameter;
+    document.getElementById("spindleSpeed").value = tool.spindle;
+    document.getElementById("feed").value = tool.feed;
+    document.getElementById("plungeFeed").value = tool.plunge;
+});
     // ============================
     // Input Validation
     // ============================
