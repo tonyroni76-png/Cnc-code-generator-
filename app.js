@@ -11,21 +11,49 @@ function generateGCode() {
     const finalDepth = parseFloat(document.getElementById("finalDepth").value);
     const depthPerPass = parseFloat(document.getElementById("depthPerPass").value);
 
+    // ============================
+    // Input Validation
+    // ============================
+
     if (isNaN(width) || isNaN(height) || isNaN(feed)) {
-    alert("Please enter Width, Height, and Feed Rate.");
-    return;
-}
+        alert("Please enter Width, Height, and Feed Rate.");
+        return;
+    }
 
-if (depthPerPass <= 0) {
-    alert("Depth Per Pass must be greater than zero.");
-    return;
-}
+    if (width <= 0 || height <= 0) {
+        alert("Width and Height must be greater than zero.");
+        return;
+    }
 
-if (finalDepth >= 0) {
-    alert("Final Depth must be a negative number.");
-    return;
-}
-    
+    if (feed <= 0) {
+        alert("Feed Rate must be greater than zero.");
+        return;
+    }
+
+    if (safeZ <= 0) {
+        alert("Safe Z Height must be greater than zero.");
+        return;
+    }
+
+    if (depthPerPass <= 0) {
+        alert("Depth Per Pass must be greater than zero.");
+        return;
+    }
+
+    if (finalDepth >= 0) {
+        alert("Final Depth must be a negative number.");
+        return;
+    }
+
+    if (Math.abs(depthPerPass) > Math.abs(finalDepth)) {
+        alert("Depth Per Pass cannot be greater than the total cutting depth.");
+        return;
+    }
+
+    // ============================
+    // Start generating G-code
+    // ============================
+
     let gcode = "";
 
     gcode += "%\n";
