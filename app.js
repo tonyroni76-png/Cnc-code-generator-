@@ -11,6 +11,55 @@ function generateGCode() {
     const finalDepth = parseFloat(document.getElementById("finalDepth").value);
     const depthPerPass = parseFloat(document.getElementById("depthPerPass").value);
 
+    const toolLibrary = {
+    "1": {
+        number: 1,
+        diameter: 0.0625,
+        spindle: 18000,
+        feed: 20,
+        plunge: 8
+    },
+
+    "2": {
+        number: 2,
+        diameter: 0.125,
+        spindle: 18000,
+        feed: 40,
+        plunge: 12
+    },
+
+    "3": {
+        number: 3,
+        diameter: 0.1875,
+        spindle: 18000,
+        feed: 60,
+        plunge: 18
+    },
+
+    "4": {
+        number: 4,
+        diameter: 0.250,
+        spindle: 18000,
+        feed: 80,
+        plunge: 24
+    },
+
+    "5": {
+        number: 5,
+        diameter: 0.375,
+        spindle: 18000,
+        feed: 120,
+        plunge: 36
+    },
+
+    "6": {
+        number: 6,
+        diameter: 0.500,
+        spindle: 18000,
+        feed: 160,
+        plunge: 48
+    }
+};
     // ============================
     // Input Validation
     // ============================
