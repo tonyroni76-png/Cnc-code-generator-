@@ -11,6 +11,21 @@ function generateGCode() {
     const finalDepth = parseFloat(document.getElementById("finalDepth").value);
     const depthPerPass = parseFloat(document.getElementById("depthPerPass").value);
 
+    if (isNaN(width) || isNaN(height) || isNaN(feed)) {
+    alert("Please enter Width, Height, and Feed Rate.");
+    return;
+}
+
+if (depthPerPass <= 0) {
+    alert("Depth Per Pass must be greater than zero.");
+    return;
+}
+
+if (finalDepth >= 0) {
+    alert("Final Depth must be a negative number.");
+    return;
+}
+    
     let gcode = "";
 
     gcode += "%\n";
